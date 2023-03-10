@@ -53,13 +53,19 @@ Data was then seperated into train and test sets to prevent data leakage.
 
 ## Simple Model
 
-![](images/)
+![Simple Forest](images/dtmodel.png)
 
 
 
 ## Exploratory Modelling
 
-![](images/)
+###### First Logistic Regression Model
+
+![First Logistic Regression](images/firstlogmodel.png)
+
+###### Random Forest Model
+
+![Random Forest](images/rfcmodel.png)
 
 
 #### Model Tuning
@@ -85,9 +91,17 @@ Our final precision and roc-auc scores were as follows:
 * roc-auc score: 0.7593970343532301
 * precision score: 0.7658851512062521
 
-![Final Regression Model](images/final_multiple_reg.png)
+![Final Regression Model](images/finalmodel.png)
 
 Despite removing 26 predictors, our final model only lost approximately 0.5% of its predictive power from the largest logistical regression model. The limited number of predictors affords this model more value for municipalities with limited resources. 
+
+###### Confusion Matrix
+
+![Confusion Matrix](images/confusionmatrix.png)
+
+###### ROC-AUC Curve
+
+![ROC-AUC Curve](images/roccurve.png)
 
 
 #### Implications (Coefficients)
