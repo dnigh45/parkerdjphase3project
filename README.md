@@ -15,14 +15,26 @@ Dietrich Nigh, Parker DeShazo
 
 ## Business Understanding of Problem
 
+After the events of the last few years, the importance of vaccination campaigns cannot be overstated. COVID brought vaccine development and deployment to the forefront of our minds. The shortcomings were widely reported but COVID was a medical success story. However, the disease quickly stifled the vaccine's efficacy as binding sites rapidly evolved. 
 
+The seasonal flu is another disease that requires freqent re-administration due to changes in the binding site of the virus. While we have known about this ailment for well over 100 years, vaccine adoption rates are not sufficiently high to achieve true herd immunity.
+
+To further this aim, we here at VaccAmerica, an NGO specializating in predicting vaccine usage, have created a model to predict if an individual will vaccinate. Using the features from this final model, we provide recommendations on how to increase seasonal flu vaccine adoption rates.
 
 #### Limitations of Our Data
 
-* No data on rents
-* Data set did not include any information on unimproved lots
-* Models are not predictive
-* No data on development price
+* Women were overrepresented
+* White individuals were overrepresented
+* Geological data was not translatable
+* No data on religious or politic belief
+
+Imbalance of Sex
+
+![Sex Imbalance](images/sex.png)
+
+Imbalance of Race
+
+![Race Imbalance](images/race.png)
 
 ## Bottom Line
 
