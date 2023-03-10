@@ -1,6 +1,6 @@
-# Insights for Site Development in Seattle
+# Increasing Vaccine Adoption in Your City
 <p align="center">
-  <img src="images/" alt="">
+  <img src="images/flubanner.jpg" alt="">
 </p>
 
 #### Team Members
