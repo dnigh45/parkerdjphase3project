@@ -21,6 +21,8 @@ The seasonal flu is another disease that requires freqent re-administration due 
 
 To further this aim, we here at VaccAmerica, an NGO specializating in predicting vaccine usage, have created a model to predict if an individual will vaccinate. Using the features from this final model, we provide recommendations on how to increase seasonal flu vaccine adoption rates.
 
+Precision and the ROC-AUC score were used as the primary metrics for modelling. Precision was opted for to minimize the count of false positives in our predictions. False positives, or people predicted to get the vaccine that don't, negative impact herd immunity as unvaccinated individuals are in the population. There is no penalty for predicting someone would not get the vaccine that did. ROC-AUC is the metric utilized in the competition the data was taken from. 
+
 #### Limitations of Our Data
 
 * Women were overrepresented
@@ -38,13 +40,15 @@ To further this aim, we here at VaccAmerica, an NGO specializating in predicting
 
 ## Bottom Line
 
-Through the proper setting and thoughtful allocation of lot real estate, profits can be maximized when developing in the Seattle Metro.
+Through the informing opinions, getting doctors onboard with recommendations, and targetting age groups < 40 years old municipalities will be able to increase the portion of their population that seeks the seasonal flu vaccine.
 
 ## Data Preparation
 
 At the outset, the data was not in a usable state and preliminary cleaning needed to be performed.
 Some of the data was unusable due to missing values. These categories were:
-* 
+* employment_occupation
+* employment_industry
+* health_insurance
 Additional data manipulation was done via a ColumnTransformer within our pipeline.
 * Categorical and Numeric data was imputed 
 * Categorical data was oridinally encoded to be usealbe
@@ -52,16 +56,23 @@ Additional data manipulation was done via a ColumnTransformer within our pipelin
 Data was then seperated into train and test sets to prevent data leakage.
 
 ## Simple Model
+To start our analysis off, we used a simple forest model. The use of this model allowed for an initial assessment of feature importance.
 
 ![Simple Forest](images/dtmodel.png)
 
-
+Our precision and roc-auc scores for this model, 68.12% and 0.7176 respectively, were lower than desired so additional modelling was needed. 
 
 ## Exploratory Modelling
 
-###### First Logistic Regression Model
+We started through creating a logistic regression using the features identified in the first decision tree. These features, opinion_seas_vacc_effective and doctor_recc_seasonal, were not sufficient. 
+
+After creating an initial logistic regression using the above features, a logistic regression capturing all predictors was used. The ROC-AUC score and the precision was signficantly higher, 0.7634 and 77.05% respectively. However, with 32 predictors, this would be an impractical model for municipalities with limited resources.
+
+###### Total Logistic Regression Model
 
 ![First Logistic Regression](images/firstlogmodel.png)
+
+A Random Forest Model was constructed in attempt to increase scores via an ensamble model. An increase scores from the logistic regression model was not seen. This model had an ROC-AUC score of 0.7321 and a precision of 74.96%. 
 
 ###### Random Forest Model
 
@@ -79,12 +90,12 @@ log_reg_grid = {'log__C': stats.uniform(loc=0, scale=10),
 
 ## Final Model
 After removing factors due to their insignificance or due to multicollinearity, our final model included the following predictors:
-* opinion_seas_risk              2.104511
-* doctor_recc_seasonal           1.894827
-* opinion_seas_vacc_effective    1.853458
-* age_group                      1.326044
-* health_worker                  0.723932
-* opinion_seas_sick_from_vacc    1.509126
+* opinion_seas_risk              
+* doctor_recc_seasonal           
+* opinion_seas_vacc_effective    
+* age_group                      
+* health_worker                  
+* opinion_seas_sick_from_vacc    
 
 Our final precision and roc-auc scores were as follows:
 
@@ -112,3 +123,11 @@ With a one unit change in any of these factors, the odds of receiving change as 
 * age_group                      1.326044
 * health_worker                  0.723932
 * opinion_seas_sick_from_vacc    1.509126
+
+The results of our analysis show that opinions about the vaccine, recieving a doctor's recommendation, and certain demographic characteristics are predictive of an individuals' choice to receive a seasonal vaccine. 
+
+While a city may not be able to change someone's age or their employment type, they are able to put funding toward medical eduation. This education will hopefully influence peoples' attitudes toward the seasonal vaccine. For example, changing someone's opinion on the efficacy of the vaccine will cause 2.1 times increase in the odds that they recieve the vaccine. 
+
+The city will also be able to divert toward younger age groups. We found that younger ages (<40 years of age) are far less likely to receive the vaccine. As such, campaigns should be concentrated on these groups to increase their adoption rates.
+
+Our final model allows for strong predictive power on just six features. This will allow your city to more easily collect the requisite data. Additionally, the fewer number of features permits concentrated campaigns, rather than wasting resources on influencing features that will not be impactful.
