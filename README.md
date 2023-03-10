@@ -28,11 +28,11 @@ To further this aim, we here at VaccAmerica, an NGO specializating in predicting
 * Geological data was not translatable
 * No data on religious or politic belief
 
-Imbalance of Sex
+###### Imbalance of Sex
 
 ![Sex Imbalance](images/sex.png)
 
-Imbalance of Race
+###### Imbalance of Race
 
 ![Race Imbalance](images/race.png)
 
@@ -63,7 +63,13 @@ Data was then seperated into train and test sets to prevent data leakage.
 
 
 #### Model Tuning
-
+Model tuning in this case was handled via a grid search with feature additions from a previous iteration of the logistic regression model. Coefficent magnitude was the primary filter for selection of features. Otherwise, the best coefficients were grabbed from the following grid:
+```
+log_reg_grid = {'log__C': stats.uniform(loc=0, scale=10),
+               'log__l1_ratio': stats.expon(scale=0.2),
+               'log__penalty': ['log__', 'l1', 'l2', 'elasticnet', None],
+               'log__solver': ['lbfgs', 'newton-cg', 'newton-cholesky', 'sag', 'saga']}
+ ```
 
 ## Final Model
 After removing factors due to their insignificance or due to multicollinearity, our final model included the following predictors:
@@ -74,16 +80,21 @@ After removing factors due to their insignificance or due to multicollinearity, 
 * health_worker                  0.723932
 * opinion_seas_sick_from_vacc    1.509126
 
+Our final precision and roc-auc scores were as follows:
+
+* roc-auc score: 0.7593970343532301
+* precision score: 0.7658851512062521
+
 ![Final Regression Model](images/final_multiple_reg.png)
 
 Despite removing 26 predictors, our final model only lost approximately 0.5% of its predictive power from the largest logistical regression model. The limited number of predictors affords this model more value for municipalities with limited resources. 
 
 
 #### Implications (Coefficients)
-
-* 
-* 
-* 
-* 
-* 
-
+With a one unit change in any of these factors, the odds of receiving change as follows:
+* opinion_seas_risk              2.104511
+* doctor_recc_seasonal           1.894827
+* opinion_seas_vacc_effective    1.853458
+* age_group                      1.326044
+* health_worker                  0.723932
+* opinion_seas_sick_from_vacc    1.509126
