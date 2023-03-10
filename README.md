@@ -1,6 +1,7 @@
+
 # Increasing Vaccine Adoption in Your City
 <p align="center">
-  <img src="images/flubanner.jpg" alt="">
+  <img src="images/flubanner.jfif" alt="">
 </p>
 
 #### Team Members
